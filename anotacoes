@@ -1,1 +1,28 @@
 Anotações uteis
+
+Monolithic: Todos os drives são buit-in, todos os drives tudo que o computador
+precisa já está nele, não precisa de componentes extras.
+
+MicroKernel: kernel é muito basico tem poucas linhas de código.
+os drives e componentes são instalados com extra codigos.   
+
+Hybrid: mistura dos dois anteriores
+
+HTTP	https://www.kernel.org/pub/
+GIT	https://git.kernel.org/
+RSYNC	rsync://rsync.kernel.org/pub/
+
+qundo se compila o kernel voc~e determina se le é monolitico ou microkernel.
+
+HTTP	-->https://www.kernel.org/pub/
+       --> linux/ 
+       --> kernel/  
+       --> linux-4.4.272.tar.gz
+
+Download the file. Copiar em : /usr/src  é onde deve manter este arquivo.
+        EXTRAIR O ARQUIVO DENTRO DO DIRETORIO:
+        tar -xvf NomeDoArquivo
+
+make config/menuconfig/xconfig/gconfig/oldconfig
+Todos fazm a mesma coisa. config all the feature are variables.
+
