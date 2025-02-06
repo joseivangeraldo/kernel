@@ -26,3 +26,16 @@ Download the file. Copiar em : /usr/src  é onde deve manter este arquivo.
 make config/menuconfig/xconfig/gconfig/oldconfig
 Todos fazm a mesma coisa. config all the feature are variables.
 
+# Start recording terminal session to "session_log.txt"
+
+script session_log.txt 
+
+# Execute your commands here
+ls -l
+whoami
+ping google.com 
+
+# Stop recording and save to file
+exit 
+
+
