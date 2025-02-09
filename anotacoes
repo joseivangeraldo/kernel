@@ -47,3 +47,6 @@ often linked to this tree. Moreover, you should not require root in order to mak
 the kernel—instead, work out of your home directory and use root only to install new ker-
 nels. Even when installing a new kernel, /usr/src/linux should remain untouched.
 
+apt-get update
+apt-get dist-upgrade
+apt-get install flex
