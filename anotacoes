@@ -1,52 +1,19 @@
-Anotações uteis
+ To create this directory, execute the following command, as user root, before starting the download session:
 
-Monolithic: Todos os drives são buit-in, todos os drives tudo que o computador
-precisa já está nele, não precisa de componentes extras.
+mkdir -v $LFS/sources
 
-MicroKernel: kernel é muito basico tem poucas linhas de código.
-os drives e componentes são instalados com extra codigos.   
+Make this directory writable and sticky. “Sticky” means that even if multiple users have write permission on a directory, only the owner of a file can delete the file within a sticky directory. The following command will enable the write and sticky modes:
 
-Hybrid: mistura dos dois anteriores
+chmod -v a+wt $LFS/sources
 
-HTTP	https://www.kernel.org/pub/
-GIT	https://git.kernel.org/
-RSYNC	rsync://rsync.kernel.org/pub/
+There are several ways to obtain all the necessary packages and patches to build LFS:
 
-qundo se compila o kernel voc~e determina se le é monolitico ou microkernel.
+    The files can be downloaded individually as described in the next two sections.
 
-HTTP	-->https://www.kernel.org/pub/
-       --> linux/ 
-       --> kernel/  
-       --> linux-4.4.272.tar.gz
+    For stable versions of the book, a tarball of all the needed files can be downloaded from one of the mirror sites listed at https://www.linuxfromscratch.org/mirrors.html#files.
 
-Download the file. Copiar em : /usr/src  é onde deve manter este arquivo.
-        EXTRAIR O ARQUIVO DENTRO DO DIRETORIO:
-        tar -xvf NomeDoArquivo
+    The files can be downloaded using wget and a wget-list as described below.
 
-make config/menuconfig/xconfig/gconfig/oldconfig
-Todos fazm a mesma coisa. config all the feature are variables.
+To download all of the packages and patches by using wget-list-systemd as an input to the wget command, use:
 
-
-ABAIXO BASEADO EM: Linux Kernel Development, 3rd Edition.pdf
-
-git clone git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux-2.6.git
-
-If your tarball is compressed with bzip2, run
-$ tar xvjf linux-x.y.z.tar.bz2
-If it is compressed with GNU zip, run
-$ tar xvzf linux-x.y.z.tar.gz
-This uncompresses and untars the source to the directory linux-x.y.z. If you use git
-to obtain and manage the kernel source, you do not need to download the tarball. Just
-run the git clone command as described and git downloads and unpacks the latest source.
-
-Where to Install and Hack on the Source
-The kernel source is typically installed in /usr/src/linux. You should not use this source
-tree for development because the kernel version against which your C library is compiled is
-often linked to this tree. Moreover, you should not require root in order to make changes to
-
-the kernel—instead, work out of your home directory and use root only to install new ker-
-nels. Even when installing a new kernel, /usr/src/linux should remain untouched.
-
-apt-get update
-apt-get dist-upgrade
-apt-get install flex
+wget --input-file=wget-list-systemd --continue --directory-prefix=$LFS/sources
