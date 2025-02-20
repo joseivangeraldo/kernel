@@ -1,41 +1,396 @@
-Anotações uteis
 
-Monolithic: Todos os drives são buit-in, todos os drives tudo que o computador
-precisa já está nele, não precisa de componentes extras.
 
-MicroKernel: kernel é muito basico tem poucas linhas de código.
-os drives e componentes são instalados com extra codigos.   
+vboxuser@Ubuntu:~$ sudo usermod -aG root vboxuser  --colocar acesso a grupos de programa
 
-Hybrid: mistura dos dois anteriores
+root@Ubuntu:/usr/src# tar -xvf linux-4.4.272.tar.xz  --> descompactar arquivo Tar
 
-HTTP	https://www.kernel.org/pub/
-GIT	https://git.kernel.org/
-RSYNC	rsync://rsync.kernel.org/pub/
-
-qundo se compila o kernel voc~e determina se le é monolitico ou microkernel.
-
-HTTP	-->https://www.kernel.org/pub/
-       --> linux/ 
-       --> kernel/  
-       --> linux-4.4.272.tar.gz
-
-Download the file. Copiar em : /usr/src  é onde deve manter este arquivo.
-        EXTRAIR O ARQUIVO DENTRO DO DIRETORIO:
-        tar -xvf NomeDoArquivo
+root@Ubuntu:/usr/src/linux-4.4.272# ls
+root@Ubuntu:/usr/src/linux-4.4.272# 
 
 make config/menuconfig/xconfig/gconfig/oldconfig
-Todos fazm a mesma coisa. config all the feature are variables.
 
-# Start recording terminal session to "session_log.txt"
+todas fazem a mesma coisa, selecionam as caracteristicas. config, c file , kernel features s'ao variaveis, podem variar. prefencialmente usar menuconfig. Xconfig [e com uma interface grafica. em servidores n'ao existem interfaces graficas.
 
-script session_log.txt 
+old config e simples usa as configura;'aos anteriores que fram criadas.    
 
-# Execute your commands here
-ls -l
-whoami
-ping google.com 
+root@Ubuntu:/home/vboxuser# usermod -a -G sudo vboxuser
 
-# Stop recording and save to file
-exit 
+sudo su 
+# vi /etc/sudoers
+
+The editor would open the file, now scroll down to the bottom where you will see a line
+
+#User privilege specification
+
+root     ALL=(ALL:ALL) ALL
+
+vboxuser ALL=(ALL:ALL) ALL
+
+
+Adding User via Terminal
+
+To add a user to the sudoers in Debian via the terminal, you can either add the user to the sudo group (simpler method) or modify the /etc/sudoers file for more fine-grained control. Here are the steps for both methods.
+#1 Login to your Debian System
+
+First, you’ll need to access your terminal. If you’re not logged in as the root user, you’ll have to switch to a user that already has sudo privileges.
+#2 Adding a User to the sudo Group
+
+The easiest way to give a user sudo access is to add them to the sudo group. By default, Debian is configured in a way that members of the sudo group are permitted to use the sudo command.
+sudo usermod -aG sudo username
+
+Replace username with the name of the user you want to grant sudo privileges.
+#3 Verify the User is Part of the sudo Group
+
+To ensure the user has been added to the group, you can use the groups command:
+groups username
+
+You should see sudo in the list of groups for that user.
+#4 Alternative Method: Modify the /etc/sudoers File
+
+If you want to grant specific permissions or avoid adding the user to the sudo group, you can edit the /etc/sudoers file.
+
+1. Open the sudoers file using visudo:
+sudo visudo
+
+The visudo command ensures that you do not make syntax errors that can lock you out of the system.
+
+2. Add the user with appropriate permissions:
+Navigate to the section where individual user permissions are defined. To give full access, add:
+username ALL=(ALL:ALL) ALL
+
+For specific permissions, consult the sudoers man page.
+
+3. Save and Exit:
+
+Depending on the editor you are in:
+
+    For nano (default for some Debian installations): CTRL + O to write changes, then Enter, and CTRL + X to exit.
+    For vi: Press Esc, type :wq, and press Enter.
+
+Note: Always use visudo when editing the sudoers file. Directly editing can lead to errors that make your system unusable.
+#5 Test the Configuration
+
+Switch to the user account and try to run a command with sudo to ensure the permissions are applied correctly:
+su - username
+sudo apt updat
+
+If everything is set up correctly, the user should be prompted for their password and then be able to execute the apt update command with elevated privileges.
+
+Congratulations! you’ve now successfully added a user to the sudoers on Debian. It’s crucial to be careful when giving sudo privileges, as a sudo user has a lot of power and can potentially harm the system if not used cautiously.
+
+PACOTES NECESSARIOOS PARA COMPILAR O KERNEL
+sudo apt-get install libncurses-dev flex bison openssl libssl-dev dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf
+
+
+root@Ubuntu: /usr/src/linux-4.4.272
+root@Ubuntu:/usr/src/linux-4.4.272# clear
+
+root@Ubuntu: /usr/src/linux-4.4.272
+root@Ubuntu:/usr/src/linux-4.4.272# clear
+exit
+usermod  -aG root vboxuser
+
+root@Ubuntu: /usr/src/linux-4.4.272
+root@Ubuntu:/usr/src/linux-4.4.272# clear
+root@Ubuntu:/usr/src/linux-4.4.272# make clean
+
+root@Ubuntu: /usr/src/linux-4.4.272
+root@Ubuntu:/usr/src/linux-4.4.272# make menuconfig
+
+root@Ubuntu: /usr/src/linux-4.4.272
+root@Ubuntu:/usr/src/linux-4.4.272# clear
+
+root@Ubuntu: /usr/src/linux-4.4.272
+root@Ubuntu:/usr/src/linux-4.4.272# exit
+
+
+
+ 
+08/02/2025
+Na parte de menuconfig as op;'oes qdo tem a letra `M` quer dizer que [e modular
+pode ser instalada ap[os em um modulo externo.
+
+  <*>   CAN bus subsystem support  --->
+  
+  *** End of the configuration.
+*** Execute 'make' to start the build or try 'make help'.
+
+FOI CRIADO UM ARQUIVO .config
+root@Ubuntu:/usr/src/linux-4.4.272# ls -a
+.        CREDITS                 .gitignore  lib          REPORTING-BUGS  usr
+..       crypto                  include     .mailmap     samples         virt
+arch     Documentation           init        MAINTAINERS  scripts
+block    drivers                 ipc         Makefile     security
+certs    firmware                Kbuild      mm           sessao.log
+.config  fs                      Kconfig     net          sound
+COPYING  .get_maintainer.ignore  kernel      README       tools
+
+OBERVE QUE ISTO AINDA N'AO FOI A COMPILA;'AO DOKERNEL, FOI SOMENTE AS COISAS QUE QUERO QUE FIQUEM ATIVAS OU DESATIVADAS.
+
+APOS SERA CRIADO A IMAGEM CHAMADA vmlinux
+vu -sh vmlinux ---> para ver o tamanho da imagem
+NAS ARQUITETURAS MODERNAS DE KERNEL, VC N'AO PODE COMPILAR COMO UM UNICO MODULO. POR ISSO QUE TEM DE FAZER OS MODULOS EXTERNOS, COMPILA-LOS
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22222
+
+root@ivan-22V280-L-BY31P1:/usr/src/linux-4.4.272#
+
+cat > version-check.sh << "EOF"
+
+Ubuntu
+    apt-get install texinfo
+    your system, click to copy
+Debian
+    apt-get install texinfo 
+Alpine
+    apk add texinfo 
+Arch Linux
+    pacman -S texinfo            
+Kali Linux
+    apt-get install texinfo 
+CentOS
+    yum install texinfo 
+Fedora
+    dnf install texinfo 
+Windows (WSL2)
+    sudo apt-get update sudo apt-get install texinfo 
+OS X
+    brew install texinfo 
+Raspbian
+    apt-get install texinfo 
+Dockerfile
+    dockerfile.run/texi2any 
+Docker
+    docker run cmd.cat/texi2any texi2any
+    powered by Commando
+    
+    
+    INSTALL TEXT INFO DEBIAN:
+    
+sudo dpkg-reconfigure dash
+ACIMA ABRE PARA EDITA GRAFICAMENTE
+
+ls -l /bin/sh  ---> VER PARA AONDE APONTA
+ln -svf bash /bin/sh  --> ALTERAR PELO CONSOLE
+
+
+
+
+
+ To create this directory, execute the following command, as user root, before starting the download session:
+
+mkdir -v $LFS/sources
+
+Make this directory writable and sticky. “Sticky” means that even if multiple users have write permission on a directory, only the owner of a file can delete the file within a sticky directory. The following command will enable the write and sticky modes:
+
+chmod -v a+wt $LFS/sources
+
+There are several ways to obtain all the necessary packages and patches to build LFS:
+
+    The files can be downloaded individually as described in the next two sections.
+
+    For stable versions of the book, a tarball of all the needed files can be downloaded from one of the mirror sites listed at https://www.linuxfromscratch.org/mirrors.html#files.
+
+    The files can be downloaded using wget and a wget-list as described below.
+
+To download all of the packages and patches by using wget-list-systemd as an input to the wget command, use:
+
+wget --input-file=wget-list-systemd --continue --directory-prefix=$LFS/sources
+
+
+18/02/2025
+CRIAR UMMA PARTICAO A PARTE PARA A INSTALACAO
+entrar como usuario root:
+#: lsblk
+sdb    8:16   0    30G  0 disk 
+sr0   11:0    1  1024M  0 rom 
+
+CAPITULO 2.5 DO LIVRO
+fdisk /dev/sdb
+criar particao tipo dos mbr
+colocar `w` ao final que [e gravar tudo.
+
+cfdisk /dev/sdb  
+boot sdb1 ext2
+raiz sdb2
+sdb3 swap
+
+root@Ubuntu2025:/home/vboxuser# mkfs -v -t ext4 /dev/sdb2 
+root@Ubuntu2025:/home/vboxuser# mkswap /dev/sdb3
+
+EDITAR .BASHRC
+root@Ubuntu2025:~# nano .bashrc
+Acrescentar isto ao final do arquivo
+ export LFS=/mnt/lfs
+ 
+ CAPITULO 2.7 MONTANDO A NOVA PARTICAO
+root@Ubuntu2025:~# cd /mnt
+root@Ubuntu2025:/mnt# ls
+root@Ubuntu2025:/mnt# mkdir -pv $LFS
+mkdir: created directory '/mnt/lfs'
+root@Ubuntu2025:/mnt# ls
+lfs
+
+APONTAR PARA A HD RESERVADA PARA O SISTEMA
+root@Ubuntu2025:/mnt# mount -v -t ext4 /dev/sdb2 $LFS
+mount: /dev/sdb2 mounted on /mnt/lfs.
+root@Ubuntu2025:/mnt# ls
+lfs
+root@Ubuntu2025:/mnt# cd lfs
+root@Ubuntu2025:/mnt/lfs# ls
+lost+found
+root@Ubuntu2025:/mnt/lfs# 
+
+ETAPA CRIAR DIRETORIO CODIGOS FONTE E PERMISSOES
+root@Ubuntu2025:/mnt/lfs# ls
+lost+found
+root@Ubuntu2025:/mnt/lfs# mkdir -v $LFS/sources
+mkdir: created directory '/mnt/lfs/sources'
+root@Ubuntu2025:/mnt/lfs# ls
+lost+found  sources
+root@Ubuntu2025:/mnt/lfs# chmod -v a+wt $LFS/sources
+mode of '/mnt/lfs/sources' changed from 0755 (rwxr-xr-x) to 1777 (rwxrwxrwt)
+root@Ubuntu2025:/mnt/lfs# ls -l
+total 20
+drwx------ 2 root root 16384 fev 18 19:53 lost+found
+drwxrwxrwt 2 root root  4096 fev 19 20:59 sources
+root@Ubuntu2025:/mnt/lfs# 
+
+DESCARREGAR OS PACOTES OU PATCHS
+No diretorio /root pegar a lista wget-list-systemd
+root@Ubuntu2025:~# nano wget-list-systemd
+
+PARA FAZER DOWNLOAD DE TODOS?
+root@Ubuntu2025:~# wget --input-file=wget-list-systemd --continue --directory-prefix=$LFS/sources
+
+CONTAR A QUANTIDADE QUE DEVERIA TER DE ARQUIVOS
+root@Ubuntu2025:~# wc wget-list-systemd 
+  89   89 5620 wget-list-systemd  --->  89 arquivos
+ 
+ CHECAR PELO MD5SUM SE ESTA FALTANDO ALGUM
+  
+  root@Ubuntu2025:/mnt/lfs/sources# nano md5sums
+root@Ubuntu2025:/mnt/lfs/sources# pushd $LFS/sources
+  md5sum -c md5sums
+popd
+/mnt/lfs/sources /mnt/lfs/sources
+acl-2.3.2.tar.xz: OK
+attr-2.5.2.tar.gz: OK
+autoconf-2.72.tar.xz: OK
+automake-1.17.tar.xz: OK
+bash-5.2.32.tar.gz: OK
+bc-6.7.6.tar.xz: OK
+md5sum: binutils-2.43.1.tar.xz: No such file or directory
+binutils-2.43.1.tar.xz: FAILED open or read
+bison-3.8.2.tar.xz: OK
+md5sum: bzip2-1.0.8.tar.gz: No such file or directory
+bzip2-1.0.8.tar.gz: FAILED open or read
+check-0.15.2.tar.gz: OK
+coreutils-9.5.tar.xz: OK
+dbus-1.14.10.tar.xz: OK
+dejagnu-1.6.3.tar.gz: OK
+diffutils-3.10.tar.xz: OK
+e2fsprogs-1.47.1.tar.gz: OK
+md5sum: elfutils-0.191.tar.bz2: No such file or directory
+elfutils-0.191.tar.bz2: FAILED open or read
+md5sum: expat-2.6.2.tar.xz: No such file or directory
+expat-2.6.2.tar.xz: FAILED open or read
+expect5.45.4.tar.gz: OK
+file-5.45.tar.gz: OK
+findutils-4.10.0.tar.xz: OK
+flex-2.6.4.tar.gz: OK
+flit_core-3.9.0.tar.gz: OK
+gawk-5.3.0.tar.xz: OK
+gcc-14.2.0.tar.xz: OK
+gdbm-1.24.tar.gz: OK
+gettext-0.22.5.tar.xz: OK
+glibc-2.40.tar.xz: OK
+gmp-6.3.0.tar.xz: OK
+gperf-3.1.tar.gz: OK
+grep-3.11.tar.xz: OK
+groff-1.23.0.tar.gz: OK
+grub-2.12.tar.xz: OK
+gzip-1.13.tar.xz: OK
+iana-etc-20240806.tar.gz: OK
+inetutils-2.5.tar.xz: OK
+intltool-0.51.0.tar.gz: OK
+iproute2-6.10.0.tar.xz: OK
+jinja2-3.1.4.tar.gz: OK
+kbd-2.6.4.tar.xz: OK
+kmod-33.tar.xz: OK
+less-661.tar.gz: OK
+libcap-2.70.tar.xz: OK
+libffi-3.4.6.tar.gz: OK
+libpipeline-1.5.7.tar.gz: OK
+libtool-2.4.7.tar.xz: OK
+libxcrypt-4.4.36.tar.xz: OK
+linux-6.10.5.tar.xz: OK
+lz4-1.10.0.tar.gz: OK
+m4-1.4.19.tar.xz: OK
+make-4.4.1.tar.gz: OK
+man-db-2.12.1.tar.xz: OK
+man-pages-6.9.1.tar.xz: OK
+MarkupSafe-2.1.5.tar.gz: OK
+meson-1.5.1.tar.gz: OK
+mpc-1.3.1.tar.gz: OK
+mpfr-4.2.1.tar.xz: OK
+ncurses-6.5.tar.gz: OK
+ninja-1.12.1.tar.gz: OK
+openssl-3.3.1.tar.gz: OK
+patch-2.7.6.tar.xz: OK
+perl-5.40.0.tar.xz: OK
+pkgconf-2.3.0.tar.xz: OK
+procps-ng-4.0.4.tar.xz: OK
+psmisc-23.7.tar.xz: OK
+Python-3.12.5.tar.xz: OK
+python-3.12.5-docs-html.tar.bz2: OK
+readline-8.2.13.tar.gz: OK
+sed-4.9.tar.xz: OK
+setuptools-72.2.0.tar.gz: OK
+shadow-4.16.0.tar.xz: OK
+systemd-256.4.tar.gz: OK
+systemd-man-pages-256.4.tar.xz: OK
+tar-1.35.tar.xz: OK
+tcl8.6.14-src.tar.gz: OK
+tcl8.6.14-html.tar.gz: OK
+texinfo-7.1.tar.xz: OK
+tzdata2024a.tar.gz: OK
+util-linux-2.40.2.tar.xz: OK
+vim-9.1.0660.tar.gz: OK
+wheel-0.44.0.tar.gz: OK
+XML-Parser-2.47.tar.gz: OK
+xz-5.6.2.tar.xz: OK
+zlib-1.3.1.tar.gz: OK
+zstd-1.5.6.tar.gz: OK
+bzip2-1.0.8-install_docs-1.patch: OK
+coreutils-9.5-i18n-2.patch: OK
+expect-5.45.4-gcc14-1.patch: OK
+glibc-2.40-fhs-1.patch: OK
+kbd-2.6.4-backspace-1.patch: OK
+md5sum: WARNING: 4 listed files could not be read
+/mnt/lfs/sources
+root@Ubuntu2025:/mnt/lfs/sources# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
 
 
