@@ -6,3 +6,55 @@ $ sudo apt install snapd  -->instalar comando snap
 PORTAINER :
 $ docker pull portainer/portainer
 $ docker run -d -p 9000:9000 -p 8000:8000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer:latest
+
+INSTALL MULTIPASS:
+$ snap install multipass
+APÓS VERSÃO DA INSTALAÇÃO: 
+multipass 1.15.1 from Canonical✓ installed
+
+APÓS:
+ivan@ivan-Inspiron-3437:~$ multipass shell
+Launched: primary
+Mounted '/home/ivan' into 'primary:Home'
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-55-generic x86_64)
+
+CRIOU UMA INSTANCIA VIRTUAL DENTRO DA MAQUINA:
+ubuntu@primary:~$ 
+
+CRIAR NO VSCODE PLUGINS DE DESENVOLVIMENTO VIRTUAL:
+Procurar Remote Development
+
+EDITAR ARQUIVO:
+sudo vim /etc/ssh/sshd_config
+
+VIM COMANDS:
+:set nu   --> PERMITE VER NUMERO DAS LINHAS
+/password --> BUSCAR PALAVRA PASSWORD. Aperta ENTER e depois 'n' para as proximas ocorrencias
+i --> INSERT
+:wq --> GRAVAR E SAIR
+ALTERAR ESTE ITEM. ESTAVA  'no' FOI COLOCADO 'yes'
+KbdInteractiveAuthentication yes
+
+APÓS:
+ubuntu@primary:~$ sudo systemctl daemon-reload
+ubuntu@primary:~$ sudo service ssh restart
+ubuntu@primary:~$ sudo passwd ubuntu  --> password : 123456
+
+SABER O ENDEREÇO IP:
+ubuntu@primary:~$ hostname -I
+10.140.144.244 
+
+PROCURAR NO VS CODE A GUIA REMOTE EXPLORER:
+Procurar remotetunnels ssh.
+Acrecesntar uma conexão ssh
+COLOCAR: ubuntu@10.140.144.244
+Após é só dar um refresh na janela
+
+$ mkdir ldd  --> para criar a pasta de trabalho
+$ multipass stop primary
+multipass shell --> para inicializar de novo
+
+ubuntu@primary:~/ldd$ sudo apt update
+ubuntu@primary:~/ldd$ sudo apt upgrade
+ubuntu@primary:~/ldd$ sudo apt install -y build-essential linux-headers-$(uname -r) kmod
+
