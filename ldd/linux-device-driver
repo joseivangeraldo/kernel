@@ -22,6 +22,9 @@ Procurar Remote Development
 
 EDITAR ARQUIVO:
 sudo vim /etc/ssh/sshd_config
+Makefile  Module.symvers  ldd.c  ldd.ko  ldd.mod  ldd.mod.c  ldd.mod.o  ldd.o  modules.order
+ALTERAR ESTE ITEM. ESTAVA  'no' FOI COLOCADO 'yes'
+KbdInteractiveAuthentication yes
 
 APÓS:
 ubuntu@primary:~$ sudo systemctl daemon-reload
@@ -45,4 +48,8 @@ multipass shell --> para inicializar de novo
 ubuntu@primary:~/ldd$ sudo apt update
 ubuntu@primary:~/ldd$ sudo apt upgrade
 ubuntu@primary:~/ldd$ sudo apt install -y build-essential linux-headers-$(uname -r) kmod
+
+NA PASTA ldd. foi compilado através do Makefile o arquivo ldd.c
+Após foram gerados varios arquivos:
+Module.symvers  ldd.c  ldd.ko  ldd.mod  ldd.mod.c  ldd.mod.o  ldd.o  modules.order
 
