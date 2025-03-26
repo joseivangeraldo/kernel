@@ -2,17 +2,19 @@
 #include <linux/module.h>
 
 MODULE_LICENSE("GPL");
+MODULE_AUTHOR("InPyjama - Piyush");
+MODULE_DESCRIPTION("Our first dynamically loadable kernel module");
 
-static int __init hello_init(void)
+static int pyjama_module_init(void)
 {
-    printk(KERN_ALERT "Hello world\n");
+    printk("Hello, World! (from InPyjama!!)\n");
     return 0;
 }
 
-static void __exit hello_exit(void)
+static void pyjama_module_exit(void) 
 {
-    printk(KERN_ALERT "Goodbye\n");
+    printk("Good, Bye! (from InPyjama!!)\n");
 }
 
-module_init(hello_init);
-module_exit(hello_exit);
+module_init(pyjama_module_init);
+module_exit(pyjama_module_exit);
