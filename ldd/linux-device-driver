@@ -52,4 +52,30 @@ ubuntu@primary:~/ldd$ sudo apt install -y build-essential linux-headers-$(uname 
 NA PASTA ldd. foi compilado através do Makefile o arquivo ldd.c
 Após foram gerados varios arquivos:
 Module.symvers  ldd.c  ldd.ko  ldd.mod  ldd.mod.c  ldd.mod.o  ldd.o  modules.order
+ 
+Makefiles faz automação dos comandos;
+Oque vai interessar é o arquivo ".ko" Kernel module ou kernel object
+INJETAR O ARQUIVO .KO NO NOSSO KERNEL MODULE. E DEPOIS VERIFY.
+
+USAR O UTILITARIO  insmod, QUE AJUDA A INJETAR O .KO NO KERNEL.
+ubuntu@primary:~/ldd$ sudo insmod ldd.ko
+ubuntu@primary:~/ldd$ echo $? ---> só para ver se o comando foi bem sucedido
+
+VERIFY IF KERNEL MODULE WAS INJECTED.
+THE MESSAGES PRINT THE STATIMENTS. 
+THE MESSAGES WEREPRINTED IN THE BUFFER.
+Usar o utilitario dmesg.
+
+ubuntu@primary:~/ldd$ sudo dmesg
+[34049.860162] Hello, World! (from InPyjama!!)
+
+DEPOIS REMOVEMOS O MODULO:
+ubuntu@primary:~/ldd$ sudo rmmod ldd
+ubuntu@primary:~/ldd$ sudo dmesg
+[34671.084879] Good, Bye! (from InPyjama!!)
+
+
+
+
+
 
