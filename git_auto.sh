@@ -11,14 +11,15 @@
 # Será excuta a adição o comitt com o comentario da data da alteração,horas e minutos  #
 #				                                                     				   #
 # Uso: ./git_auto.sh 						                                           #
-#									                                                   #
+# NOW=$(date +'%Y-%m-%d %H:%M:%S')	                                                   #
 ########################################################################################
-NOW=$(date +'%Y-%m-%d %H:%M:%S')
+
+NOW=$(date +'%d-%m-%Y %H:%M:%S')
 #add arquivo
 git add .
 sleep 3
 
 # add comentarios : Noinicio vem a data, após pode-se mudar a descrição para uma da sua escolha
-git commit -m "$NOW ' Acrescentado'"
+git commit -m "'Alterado em '$NOW"
 sleep 3
 git push

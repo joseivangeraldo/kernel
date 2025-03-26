@@ -74,6 +74,8 @@ ubuntu@primary:~/ldd$ sudo rmmod ldd
 ubuntu@primary:~/ldd$ sudo dmesg
 [34671.084879] Good, Bye! (from InPyjama!!)
 
+dia 26/03/2025
+
 
 
 
