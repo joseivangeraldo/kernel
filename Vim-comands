@@ -1,0 +1,7 @@
+VIM COMANDS:
+:set nu   --> PERMITE VER NUMERO DAS LINHAS
+/password --> BUSCAR PALAVRA PASSWORD. Aperta ENTER e depois 'n' para as proximas ocorrencias
+i --> INSERT
+:wq --> GRAVAR E SAIR
+ALTERAR ESTE ITEM. ESTAVA  'no' FOI COLOCADO 'yes'
+KbdInteractiveAuthentication yes
