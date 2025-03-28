@@ -72,7 +72,7 @@ Note: Always use visudo when editing the sudoers file. Directly editing can lead
 
 Switch to the user account and try to run a command with sudo to ensure the permissions are applied correctly:
 su - username
-sudo apt updat
+sudo apt update
 
 If everything is set up correctly, the user should be prompted for their password and then be able to execute the apt update command with elevated privileges.
 

@@ -1,0 +1,16 @@
+sudo apt-get update 
+Before building anything, it is necessary to install the header files for the kernel.
+
+On Ubuntu/Debian GNU/Linux:
+
+sudo apt-get update 
+apt-cache search linux-headers-`uname -r`
+The following command provides information on the available kernel header files. Then for example:
+
+sudo apt-get install kmod linux-headers-5.4.0-80-generic
+On Arch Linux:
+
+sudo pacman -S linux-headers
+On Fedora:
+
+sudo dnf install kernel-devel kernel-headers
