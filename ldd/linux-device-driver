@@ -81,7 +81,7 @@ ubuntu@primary:~/ldd$ sudo dmesg -c
 INFORMAÇOES DO MODULO:
 ubuntu@primary:~/ldd$ modinfo ldd.ko
 
-
+30/03/2025
 
 
 
