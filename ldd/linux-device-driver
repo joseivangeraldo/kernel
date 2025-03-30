@@ -82,6 +82,20 @@ INFORMAÇOES DO MODULO:
 ubuntu@primary:~/ldd$ modinfo ldd.ko
 
 30/03/2025
+acrescentar Makefile
+
+test.text: test.c
+    cat test.c
+    cat test.c > test.text
+    cat test.text
+
+CRIAR ARQUIVO TEST.C:
+Hello, test
+EXECUTAR UM make clean.
+
+EXECUTAR COMANDO:
+make test.text
+
 
 
 
