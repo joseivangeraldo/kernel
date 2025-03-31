@@ -96,6 +96,20 @@ EXECUTAR UM make clean.
 EXECUTAR COMANDO:
 make test.text
 
+LSMOD UTILLITY:
+Abrir duas janelas de terminal. Uma executa o modulo. A outra testa a função lsmod
+$ sudo dmesg  --verifica se o buffer esta vazio. Se não fazer a limpeza.
+$ make
+$ sudo insmod ldd.ko
+$ sudo dmesg
+
+TERMINAL2:
+$ lsmod
+
+TERMINAL1:
+$ sudo rmmod ldd
+$ sudo dmesg
+
 
 
 
