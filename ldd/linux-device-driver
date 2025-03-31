@@ -58,6 +58,7 @@ Oque vai interessar é o arquivo ".ko" Kernel module ou kernel object
 INJETAR O ARQUIVO .KO NO NOSSO KERNEL MODULE. E DEPOIS VERIFY.
 
 USAR O UTILITARIO  insmod, QUE AJUDA A INJETAR O .KO NO KERNEL.
+INJETAR O MODULO NO KERNEL:
 ubuntu@primary:~/ldd$ sudo insmod ldd.ko
 ubuntu@primary:~/ldd$ echo $? ---> só para ver se o comando foi bem sucedido
 
