@@ -111,6 +111,21 @@ TERMINAL1:
 $ sudo rmmod ldd
 $ sudo dmesg
 
+rmmod module:
+1.rmmod calls delete_module() which hints the kernel that a module is to be removed
+    1.Control is transfered to the kernel
+
+2.kernel executes sys_delete_module()
+    1.Checks the permissions of the one requesting
+    2.Checks if any other loded module needs the current module
+    3.checks if the module is actually loaded
+    4Executes the function provided in module_exit
+    5-free_module()
+        1.removes references andkernel objecperform any other cleanup
+        2-perform any other cleanup
+        3.Unloads the module
+        4.Change the state in list
+        5.Remove it from the list and frees the memory
 
 
 
