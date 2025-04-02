@@ -8,6 +8,12 @@ $ snap install multipass
 APÓS VERSÃO DA INSTALAÇÃO: 
 multipass 1.15.1 from Canonical✓ installed
 
+IMPORTANTE SÓRODA UMA VIRTUALIZAÇÃO POR VEZ:
+ivan@ivan-Inspiron-3437:~$ multipass shell
+start failed: Another virtual machine manager is currently running. Please shut it down before starting a Multipass instance.
+OCORRE PORQUE TEMOS UM OUTRO PROGRAMA DE VIRTUALIZAÇÃO RODANDO
+É SÓ ENCERRAR O PROCESSO E CONTINUAR.
+
 APÓS:
 ivan@ivan-Inspiron-3437:~$ multipass shell
 Launched: primary
@@ -121,11 +127,13 @@ rmmod module:
     3.checks if the module is actually loaded
     4Executes the function provided in module_exit
     5-free_module()
-        1.removes references andkernel objecperform any other cleanup
+        1.removes references and kernel objec perform any other cleanup
         2-perform any other cleanup
         3.Unloads the module
         4.Change the state in list
         5.Remove it from the list and frees the memory
+
+
 
 
 
