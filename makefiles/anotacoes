@@ -9,3 +9,6 @@ $ make -n --> para ver as variaveis que vão ser executadas, sem executar o prog
 Exemplo CRIAR DIRETORIO:
     criardiretorio:
 		mkdir diretorio
+
+VER PROCESSOS NO COMPUTADOR:
+$ ps ux
