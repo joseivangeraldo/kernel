@@ -6,9 +6,26 @@ só exibe a saida
 
 $ make -n --> para ver as variaveis que vão ser executadas, sem executar o programa
 
-Exemplo CRIAR DIRETORIO:
-    criardiretorio:
-		mkdir diretorio
-
 VER PROCESSOS NO COMPUTADOR:
 $ ps ux
+INTEL MANUALS:
+https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
+
+$ gdb ./gdb_test 
+(gdb) set disassembly-flavor intel
+(gdb) disassemble main
+
+PROGRAMMING ASSEMBLY:
+http://nasm.us
+OPÇÕES AT&T AND INTEL SINTAX
+
+SYSCALL LINUX KERNEL TABLE , RESEARCH
+
+INVOKING SYSTEM CALL WITH SYSCALL:
+RAX - System Call Number
+RDI - 1st Argument
+RSI - 2nd Argument
+RDX - 3rd Argument
+R10 - 4th Argument
+R8  - 5th Argument
+R9  - 6th Argument
