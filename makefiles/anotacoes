@@ -5,3 +5,7 @@ echo 		@echo "Ola Mundo! :)"  --> Uma exibição silenciosa, não exibe o comand
 só exibe a saida
 
 $ make -n --> para ver as variaveis que vão ser executadas, sem executar o programa
+
+Exemplo CRIAR DIRETORIO:
+    criardiretorio:
+		mkdir diretorio

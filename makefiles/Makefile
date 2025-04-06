@@ -6,7 +6,7 @@
 #
 #
 
-all:	mesagem1
+all:	mensagem1
 		@echo "Ola galera do Canal Geofisicando"
 
 mensagem1:
@@ -14,3 +14,6 @@ mensagem1:
 
 mensagem2:
 		@echo "Ola sou a mensagem 2"
+
+criardiretorio:
+		mkdir diretorio
