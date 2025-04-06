@@ -1,0 +1,7 @@
+COMPILAÇÃO PROFISSIONAL:
+Oficial : https://www.gnu.org/software/make/manual/make.html
+
+echo 		@echo "Ola Mundo! :)"  --> Uma exibição silenciosa, não exibe o comando
+só exibe a saida
+
+$ make -n --> para ver as variaveis que vão ser executadas, sem executar o programa
