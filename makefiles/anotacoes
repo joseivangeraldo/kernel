@@ -1,31 +1,31 @@
-COMPILAÇÃO PROFISSIONAL:
-Oficial : https://www.gnu.org/software/make/manual/make.html
+makefile pode ser:
+GNUmakefile
+makefile
+Makefile
 
-echo 		@echo "Ola Mundo! :)"  --> Uma exibição silenciosa, não exibe o comando
-só exibe a saida
+#	Makefile
+#	Objetivo exibir uma mesagem Ola Mundo
+#
+#
+#
+#
+#
 
-$ make -n --> para ver as variaveis que vão ser executadas, sem executar o programa
+all:	mensagem1
+		@echo "Ola galera do Canal Geofisicando"
 
-VER PROCESSOS NO COMPUTADOR:
-$ ps ux
-INTEL MANUALS:
-https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
+mensagem1:
+		@echo "	Ola sou a mensagem 1"
 
-$ gdb ./gdb_test 
-(gdb) set disassembly-flavor intel
-(gdb) disassemble main
+mensagem2:
+		@echo "Ola sou a mensagem 2"
 
-PROGRAMMING ASSEMBLY:
-http://nasm.us
-OPÇÕES AT&T AND INTEL SINTAX
+criardiretorio:
+		mkdir diretorio
 
-SYSCALL LINUX KERNEL TABLE , RESEARCH
 
-INVOKING SYSTEM CALL WITH SYSCALL:
-RAX - System Call Number
-RDI - 1st Argument
-RSI - 2nd Argument
-RDX - 3rd Argument
-R10 - 4th Argument
-R8  - 5th Argument
-R9  - 6th Argument
+REGRA:
+-----------------------------
+|TARGET:PRE-REQUISITOS      |
+|TAB->  RECEITA OU ADIÇÃO   |
+|___________________________|
