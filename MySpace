@@ -24,6 +24,14 @@ Enable prebuilds in your Gitpod settings, allowing Gitpod to run the init tasks 
 Leverage Dockerfiles (Optional):
 For more complex setups, consider using a Dockerfile to define the base image and dependencies for your Gitpod workspaces, allowing for greater control and reproducibility. 
 
+ tasks:
+      - name: "Install Dependencies"
+        before: "npm install" # Or your package manager
+        init: "npm install"
+        command: "npm run start" # Or your project's entry point
+
+
+
 Example .gitpod.yml with Dockerfile:
 Code
 
@@ -49,3 +57,9 @@ na
 COPY . .
 
 CMD ["npm", "start"]
+
+
+
+y|Y|yes|Yes|YES|n|N|no|No|NO|
+true|True|TRUE|false|False|FALSE|
+on|On|ON|off|Off|OFF
