@@ -1,146 +1,33 @@
-video from https://www.youtube.com/watch?v=8rncBCVySEw&t=1197s
+To debug an executable (.exe) file in GDB, you first need to tell GDB the name of the executable. Then, you can run the program under GDB's control, setting breakpoints and examining the program's state. 
+Here's a step-by-step guide:
+1. Start GDB with the executable:
+Open a terminal and type gdb [executable_name] where [executable_name] is the name of your .exe file (e.g., gdb my_program.exe). 
+2. Specify the executable (if not on the command line):
+If you didn't specify the executable on the command line, you can use the file command inside GDB: (gdb) file [executable_name]. 
+You can also use the exec-file command, which is essentially a combination of exec and symbol-file: (gdb) exec-file [executable_name]. 
+If you need to debug a program that's being run from a script, you can use the exec command to replace the current process with the executable being debugged, according to Red Hat Developers. 
+3. Start the program:
+Once the executable is loaded, use the run command to start the program under GDB's control: (gdb) run. 
+If your program requires command-line arguments, you can specify them with the run command: (gdb) run [arguments]. 
+4. Set breakpoints:
+To stop the program at a specific line of code, use the break command: (gdb) break [line_number], according to UMIACS. 
+You can also set breakpoints on function names: (gdb) break [function_name]. 
+5. Inspect the program's state:
+Once the program stops at a breakpoint, you can examine variables and memory using commands like info, print, and x, according to UMIACS. 
+You can also step through the code line by line using the step command or jump to the next instruction using the next command, according to UMIACS. 
+6. Continue execution:
+To continue the program's execution after examining its state, use the continue (or c) command: (gdb) continue. 
+7. Quit GDB:
+To exit GDB and return to the shell, use the quit command: (gdb) quit. 
 
-Low Level programming language
-Comunicate with microprocessor
 
-INSTALANDO PROGRAMAS NECESSARIOS:
-    $ sudo apt install nasm build-essential
-    AGORA TEMOS NASM E LD INSTALADOS.
-LINK CONSULTA:
-https://shell-storm.org/
-https://shell-storm.org/shellcode/files/shellcode-78.php
+INTEL MANUALS:
+https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
 
-$ nasm -f elf64 demo.asm -o demo.o
-$ ld demo.o -o demo
-ld: warning: cannot find entry symbol _start; defaulting to 0000000000401000
-
-$ sudo apt install net-tools --> para usar o comando netstat
-
-$ netstat -nlt
-tcp        0      0 0.0.0.0:4444            0.0.0.0:*               LISTEN     
-
-sudo apt install netcat-traditional  --> para INSTALAR PACOTE NC - Network connect
-$ nc localhost 4444
-
-EXIBIR O ARQUIVO OBJEO EM CODIGO FONTE:
-$ objdump -D -M intel demo.o
-
-EXTRACTING CPU INFORMATION:
-INTEL - ARM - MIPS
-$ lscpu
-
-$ cat /proc/cpuinfo
-Important in the combo flags have the itens: mmx , lm
-
-GDB YOUR BEST FRIEND:
-$ gdb
-(gdb) 
-
-$ make test_gdb
-$ pico test_gdb.c --> abre este editor
-gitpod /workspace/kernel/pentesteracadem (main) $ gdb ./gdb_test
-(gdb) run hello
-(gdb) run PentesterAcademyPass
-
-SOLUTION FROM GDB PROBLEM:
-$ gdb -q gdb_test
-(No debugging symbols found in gdb_test)
-SOLUÇÃO RECOMPILAR NOVAMENTE COM SIMBOLOS GDB:
-$ gcc -ggdb gdb_test.c -o gdb_test
-APÓS FICA ASSIM:
-Reading symbols from gdb_test...
-(gdb) list --> exibe o codigo fonte
-(gdb)
-
-gitpod /workspace/kernel/pentesteracadem (main) $ gdb -q gdb_test
-Reading symbols from gdb_test...
-(gdb) list
-1       #include<stdio.h>
-2       #include<string.h>
-3
-4       int main(int argc, char **argv)
-5       {
-6           char *p = "PentesterAcademyPass";
-7
-8           if (strcmp(argv[1], p) == 0)
-9           {
-10              printf("\nWelcome to the SLAE 64-bit course! Please proceed to the next video!\n");
-(gdb) 
-11          }
-12          else
-13          {
-14              printf("\nTime to review those GDB videos again!\n");
-15          }
-16          return 0;
-17      }
-(gdb) break 8
-Breakpoint 1 at 0x1187: file gdb_test.c, line 8.
-(gdb) run hello
-Starting program: /workspace/kernel/pentesteracadem/gdb_test hello
-warning: Error disabling address space randomization: Operation not permitted
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-
-Breakpoint 1, main (argc=2, argv=0x7ffd23d81878) at gdb_test.c:8
-8           if (strcmp(argv[1], p) == 0)
-(gdb) print argv[1]
-$1 = 0x7ffd23d82067 "hello"
-(gdb) print p
-$2 = 0x55ebd9fc5008 "PentesterAcademyPass"
-(gdb) set variable p = argv[1]
-(gdb) print p
-$3 = 0x7ffd23d82067 "hello"
-(gdb) c
-Continuing.
-
-Welcome to the SLAE 64-bit course! Please proceed to the next video!
-[Inferior 1 (process 14885) exited normally]
-
-Reading symbols from gdb_test...
+$ gdb ./gdb_test 
+(gdb) set disassembly-flavor intel
 (gdb) disassemble main
 
-GENERAL PURPOSE REGISTER:
-$ nasm -felf64 HelloWorld.nasm -o HelloWorld.o
-$ ld HelloWorld.o -o HelloWorld 
-
-REDUZE INSTRUCTION SIZE 
-REMOVE NULLS
-$ cp HelloWorld.nasm HelloWorld-small.nasm
-
-$ objdump -M intel -d HelloWorld
- 401000:       b8 01 00 00 00          mov    eax,0x1 
-
-$ nasm -f elf64 HelloWorld-small.nasm -o HelloWorld-small.o
-$ ld HelloWorld-small.o -o HelloWorld-small
-
-$ objdump -M intel -d HelloWorld-small.o
- 0:   b0 01                   mov    al,0x1
-
- SAFE MODE:
- $ cp HelloWorld.nasm HelloWorld-shellcodesafe.nasm
- MUDOU ISTO:
- _start:
-
-	;print on screen
-	xor rax,	rax
-	mov al,		1
-
-$ nasm -f elf64 HelloWorld-shellcodesafe.nasm -o HelloWorld-shellcodesafe.o
-$ ld HelloWorld-shellcodesafe.o -o HelloWorld-shellcodesafe
-
-$ objdump -M intel -d HelloWorld-shellcodesafe
-0000000000401000 <_start>:
-  401000:       48 31 c0                xor    rax,rax
-  401003:       b0 01                   mov    al,0x1
- 
- 
-
-SPCIAL TOKENS:
-$ - Evaluates for current line
-$$ - Evaluate for beginning of current section
-
-$ nasm -f elf64 DataTypes.nasm -o DataTypes.o
-$ ld DataTypes.o -o DataTypes
 
 $ gdb ./DataTypes -q
 (gdb) set disassembly-flavor intel
@@ -359,7 +246,10 @@ rdi            0x1                 1
 rbp            0x0                 0x0
 rsp            0x7fff01d7ab90      0x7fff01d7ab90
 r8             0x0                 0
-r9             0x0                 0
+r9             0
+
+
+x0                 0
 r10            0x0                 0
 r11            0x202               514
 r12            0x0                 0
@@ -412,45 +302,3 @@ $ gdb -q ./HelloWorld -tui
 (gdb)layout regs
 (gdb)stepi
 ENTER,ENTER,ENTER till the end of app.
-############################################################
-MOVING DATA:
-
-
-
-
-
-
-
-COMPILAÇÃO PROFISSIONAL:
-Oficial : https://www.gnu.org/software/make/manual/make.html
-
-echo 		@echo "Ola Mundo! :)"  --> Uma exibição silenciosa, não exibe o comando
-só exibe a saida
-
-$ make -n --> para ver as variaveis que vão ser executadas, sem executar o programa
-
-VER PROCESSOS NO COMPUTADOR:
-$ ps ux
-INTEL MANUALS:
-https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
-
-$ gdb ./gdb_test 
-(gdb) set disassembly-flavor intel
-(gdb) disassemble main
-
-PROGRAMMING ASSEMBLY:
-http://nasm.us
-OPÇÕES AT&T AND INTEL SINTAX
-
-SYSCALL LINUX KERNEL TABLE , RESEARCH
-
-INVOKING SYSTEM CALL WITH SYSCALL:
-RAX - System Call Number
-RDI - 1st Argument
-RSI - 2nd Argument
-RDX - 3rd Argument
-R10 - 4th Argument
-R8  - 5th Argument
-R9  - 6th Argument
-
-
