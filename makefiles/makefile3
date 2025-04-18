@@ -1,0 +1,6 @@
+#	Makefile2
+#	make ex2 -f makefile2
+#
+
+ex3: ex3.o util3.o
+	cc -o ex3 ex3.o util3.o
