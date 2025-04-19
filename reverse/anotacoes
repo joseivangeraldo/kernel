@@ -1,0 +1,83 @@
+$ file chall1
+chall1: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped
+
+gitpod /workspace/kernel/reverse (main) $ strings chall1
+Congratz !
+You failed, try again!
+expl.asm
+winMessage
+lenWinMessage
+failMessage
+lenFailMessage
+buffer
+_loop
+_print
+_fail
+_win
+_exit
+__bss_start
+_edata
+_end
+.symtab
+.strtab
+.shstrtab
+.text
+.data
+.bss
+INSTALLING GEF COMPLEMENTO DO GDB
+
+https://hugsy.github.io/gef/install/
+
+$ bash -c "$(wget https://gef.blah.cat/sh -O -)"
+Standalone
+Quick install
+
+The quickest way to get started with GEF is through the installation script available. Simply make sure you have GDB 10.0 or higher, compiled with Python 3.10 or higher, and run
+
+bash -c "$(curl -fsSL https://gef.blah.cat/sh)"
+
+Or if you prefer wget
+
+bash -c "$(wget https://gef.blah.cat/sh -O -)"
+
+Alternatively from inside gdb directly:
+
+$ gdb -q
+(gdb) pi import urllib.request as u, tempfile as t; g=t.NamedTemporaryFile(suffix='-gef.py'); open(g.name, 'wb+').write(u.urlopen('https://tinyurl.com/gef-main').read()); gdb.execute('source %s' % g.name)
+
+That's it! GEF is installed and correctly set up. You can confirm it by checking the ~/.gdbinit file and see a line that sources (i.e. loads) GEF.
+
+$ cat ~/.gdbinit
+source ~/.gdbinit-gef.py
+
+gef➤  info functions
+All defined functions:
+
+Non-debugging symbols:
+0x08049000  _start
+0x08049022  _loop
+0x08049039  _print
+0x08049050  _fail
+0x08049061  _win
+0x08049072  _exit
+
+gef➤  disassemble _start
+Dump of assembler code for function _start:
+   0x08049000 <+0>:     mov    eax,0x3
+   0x08049005 <+5>:     mov    ebx,0x0
+   0x0804900a <+10>:    mov    ecx,0x804a024
+   0x0804900f <+15>:    mov    edx,0x14
+   0x08049014 <+20>:    int    0x80
+   0x08049016 <+22>:    mov    edx,eax
+   0x08049018 <+24>:    mov    ecx,0x0
+   0x0804901d <+29>:    mov    ebx,0x0
+End of assembler dump.
+
+gef➤  break _start
+Breakpoint 1 at 0x8049000
+
+gef➤  info break
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x08049000 <_start>
+
+
