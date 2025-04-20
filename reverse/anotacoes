@@ -114,3 +114,63 @@ gef➤  break *0x08049016  -->definindo um endereo break point
 Breakpoint 2 at 0x8049016
 
 
+gef➤  info functions
+All defined functions:
+
+Non-debugging symbols:
+0x08049000  _start
+0x08049022  _loop
+0x08049039  _print
+0x08049050  _fail
+0x08049061  _win
+0x08049072  _exit
+
+gef➤  disassemble _start
+Dump of assembler code for function _start:
+   0x08049000 <+0>:     mov    eax,0x3
+   0x08049005 <+5>:     mov    ebx,0x0
+   0x0804900a <+10>:    mov    ecx,0x804a024
+   0x0804900f <+15>:    mov    edx,0x14
+   0x08049014 <+20>:    int    0x80
+   0x08049016 <+22>:    mov    edx,eax
+   0x08049018 <+24>:    mov    ecx,0x0
+   0x0804901d <+29>:    mov    ebx,0x0
+End of assembler dump.
+
+gef➤  break _start
+Breakpoint 1 at 0x8049000
+
+gef➤  info break
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x08049000 <_start>
+
+gef➤  break *0x08049016  -->definindo um endereo break point
+Breakpoint 2 at 0x8049016
+
+gef➤  i b  --.abreviação Information Break Point
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x08049000 <_start>
+2       breakpoint     keep y   0x08049016 <_start+22>
+
+gef➤  del 2 -->deletar o segundo break point
+gef➤  i b
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x08049000 <_start>
+
+gef➤ si --> single step in
+
+
+$eax   : 0x3       
+$ebx   : 0x0       
+$ecx   : 0x0804a024  →  <buffer+0000> add BYTE PTR [eax], al
+$edx   : 0x0       
+$esp   : 0xff8938c0  →  0x00000001
+$ebp   : 0x0       
+$esi   : 0x0       
+$edi   : 0x0       
+$eip   : 0x0804900f  →  <_start+000f> mov edx, 0x14
+[ Legend: Modified register | Code | Heap | Stack | String ]
+
+https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#x86-32_bit
+
+https://www.youtube.com/watch?v=bhTGgzRsn1k

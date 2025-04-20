@@ -1,0 +1,34 @@
+.register.memory and adressing modes
+.instruction set of x86 architecture
+.calling conventions
+.how to make syscalls
+
+how can we declare static data regions?
+
+.data
+    varX    db  0x42; declare a byte into teh memory and inicialize it with 0x42
+    varY    dw  0x32 42; declare a word into teh memory and inicialize it with 0x42 2byte
+    varZ    dd  0x12 32 43 42; declare a dword into teh memory and inicialize it with;4 bytes
+
+    array   db  0x12, 0x32, 0x42; declare a array of bytes
+    array2  db  0x12 dup(0x42);declare array of 12 bytes and inicialize with 0x42
+    str     db  "Hello world",0;declare string
+
+
+mov eax, 0x1;
+mov BYTE PTR[ebx],  0x1
+mov WORD PTR[ebx],  0x2111
+mov DWORD PTR[ebx],  0x12345678
+
+mov eax, ebx
+mov eax,0x123
+mov [eax], 0x123
+
+
+push 0x123
+push ebx
+pop eax
+
+lea ==> load efective Address
+lea eax, [ebx + 0x1]; eax = ebx + 0x1
+
