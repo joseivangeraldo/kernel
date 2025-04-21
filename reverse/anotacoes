@@ -1,3 +1,5 @@
+LIMPAR CONSOLE IN GDB = CTRL + L
+
 $ file chall1
 chall1: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), statically linked, not stripped
 
@@ -170,6 +172,48 @@ $esi   : 0x0
 $edi   : 0x0       
 $eip   : 0x0804900f  →  <_start+000f> mov edx, 0x14
 [ Legend: Modified register | Code | Heap | Stack | String ]
+
+gef➤  x/s 0x804a024
+0x804a024:	"ironbyte\n"
+
+add ebx, eax; ebx = ebx +eax = 0 +0x69
+
+scanf("%s", buff);
+edx = lenght_of_the_buff
+ebx = 0
+eax = 0
+
+for (int ecx = 0; ecx = 0; ecx < edx; ecx++){
+      al = buff[ecx]
+      ebx= ebx + eax
+}
+if (ebx >= 0x988)
+   win();
+else
+   fail();
+
+   Python 3.12.3 (main, Feb  4 2025, 14:48:35) [GCC 13.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> chr(0x69)
+'i'
+>>> chr(0x72)
+'r'
+>>> ord('z')
+122
+>>> 122*19
+2318
+>>> hex(122*19)
+'0x90e'
+>>> hex(122*20)
+'0x988'
+>>> 
+>>> hex(122*20)
+'0x988'
+>>> 20*'z'
+'zzzzzzzzzzzzzzzzzzzz'
+>>> 
+
+
 
 https://chromium.googlesource.com/chromiumos/docs/+/master/constants/syscalls.md#x86-32_bit
 
