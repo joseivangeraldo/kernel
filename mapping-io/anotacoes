@@ -1,0 +1,12 @@
+$ ls ~  --> mostra inputs outputs behind director
+$ ls ~ > list.out
+$ ls ~ >> list.out --> append acrescenta no final do arquivo
+$ pacman -Syy 2> error.out  --> redirecionamento de erro
+$ pacman -Syy &> error.out  --> erro e saida ao mesmo tempo
+
+$ grep a
+sfdbbqadsssssaaaa fgdfgdf  --> vai destacar o 'a'
+$ grep a < searchfile.txt --> procrurar entrada do arquivo
+$ cat list.out searchfile.txt --> mescla os dois arquivos
+$ cat  searchfile.txt | grep a --> fazendo pipe com cat e grep
+$ ps aux | grep codesp --> melhorada comando aux reetorna muita informação

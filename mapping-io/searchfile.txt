@@ -1,0 +1,7 @@
+this is a document
+to be searched
+a b c
+
+1234 4567 8
+
+tom smith
