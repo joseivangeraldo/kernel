@@ -49,3 +49,37 @@ $ kill 43725
 $ ps aux --> Listar todos os processos em execução:
 ps -p <PID> --> Exibir detalhes específicos do processo com PID (ID do processo)
 ps axf --> Listar todos os processos em execução em formato de árvore:
+
+#################################################################################
+@joseivangeraldo ➜ /workspaces/kernel/ports (main) $ python3 -m http.server  --> abrir server python
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+
+$ lsof -P -i -n  --> abrir conexões atuais
+COMMAND     PID      USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+Xtigervnc   435 codespace    6u  IPv4  22034      0t0  TCP 127.0.0.1:5901 (LISTEN)
+Xtigervnc   435 codespace    7u  IPv6  22035      0t0  TCP [::1]:5901 (LISTEN)
+node       3040 codespace   18u  IPv4  39615      0t0  TCP 127.0.0.1:46791 (LISTEN)
+node       3040 codespace   20u  IPv4  39733      0t0  TCP 127.0.0.1:46791->127.0.0.1:36518 (ESTABLISHED)
+node       3069 codespace   20u  IPv4  39735      0t0  TCP 127.0.0.1:46791->127.0.0.1:36522 (ESTABLISHED)
+python3   61195 codespace    3u  IPv4 842973      0t0  TCP *:8000 (LISTEN)
+
+$ lsof -i tcp:8000
+COMMAND   PID      USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+python3 61195 codespace    3u  IPv4 842973      0t0  TCP *:8000 (LISTEN)
+
+$ lsof -Pan -i udp
+@joseivangeraldo ➜ /workspaces/kernel/ports (main) $ lsof -Pan -i tcp -i udp
+COMMAND     PID      USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+Xtigervnc   435 codespace    6u  IPv4  22034      0t0  TCP 127.0.0.1:5901 (LISTEN)
+Xtigervnc   435 codespace    7u  IPv6  22035      0t0  TCP [::1]:5901 (LISTEN)
+node       3040 codespace   18u  IPv4  39615      0t0  TCP 127.0.0.1:46791 (LISTEN)
+node       3040 codespace   20u  IPv4  39733      0t0  TCP 127.0.0.1:46791->127.0.0.1:36518 (ESTABLISHED)
+node       3069 codespace   20u  IPv4  39735      0t0  TCP 127.0.0.1:46791->127.0.0.1:36522 (ESTABLISHED)
+python3   61195 codespace    3u  IPv4 842973      0t0  TCP *:8000 (LISTEN)
+
+$ lsof -i -P | gr
+ep -i "listen"
+Xtigervnc   435 codespace    6u  IPv4  22034      0t0  TCP localhost:5901 (LISTEN)
+Xtigervnc   435 codespace    7u  IPv6  22035      0t0  TCP localhost:5901 (LISTEN)
+node       3040 codespace   18u  IPv4  39615      0t0  TCP localhost:46791 (LISTEN)
+python3   61195 codespace    3u  IPv4 842973      0t0  TCP *:8000 (LISTEN)
