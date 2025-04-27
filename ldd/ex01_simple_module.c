@@ -7,10 +7,9 @@ int ex01_simple_module_init(void)
     return 0;
 }
 
-void ex01_simple_module_exit(void);
+void ex01_simple_module_exit(void)
 {
     printk(KERN_ALERT "Inside the %s function", __FUNCTION__);
-
 }
 
 module_init(ex01_simple_module_init);
