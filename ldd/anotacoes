@@ -1,0 +1,24 @@
+https://www.youtube.com/watch?v=iSiyDHobXHA&t=3474s --->VIDEO BASEADO
+
+rECOMANDA INSTALAR MULTIPASS:
+ EDITAR:
+ $ vim /etc/ssh/sshd_config
+ :set nu  --> setar numero de linhas
+ 
+ 63 ChallengeResponseAuthentication no
+  63 ChallengeResponseAuthentication yes
+  :wq
+
+@joseivangeraldo ➜ /workspaces/kernel/ldd (main) $ sudo systemctl daemon-reload
+
+@joseivangeraldo ➜ /workspaces/kernel/ldd (main) $ sudo service --status-all
+ [ ? ]  binfmt-support
+ [ + ]  dbus
+ [ ? ]  hwclock.sh
+ [ - ]  procps
+ [ - ]  rsync
+ [ + ]  ssh
+ [ - ]  udev
+ [ - ]  x11-common
+@joseivangeraldo ➜ /workspaces/kernel/ldd (main) $ sudo service ssh restart
+ * Restarting OpenBSD Secure Shell server sshd   
