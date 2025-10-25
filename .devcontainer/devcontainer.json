@@ -1,10 +1,19 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "desktop-lite": {
-        "password": "vscode",
-        "webPort": "6080",
-        "vncPort": "5901"
+  "name": "Assembly (NASM) Environment",
+  // Você pode usar uma imagem base que já tenha algumas ferramentas de desenvolvimento
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  
+  // Comando para instalar o NASM e outras ferramentas necessárias
+  "postCreateCommand": "apt-get update && apt-get install -y nasm build-essential gdb",
+  
+  // Configurações opcionais para o VS Code dentro do container (ex: extensões)
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": [
+        // Extensões úteis para Assembly (opcional)
+        "austin.code-gnu-global" 
+      ]
     }
-}
+  }
 }
