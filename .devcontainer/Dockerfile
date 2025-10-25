@@ -1,7 +1,10 @@
-# Use uma imagem base do Ubuntu
-FROM ubuntu:22.04
+# [Choice] Debian version (use bullseye on local arm64/Apple Silicon): trixie, bookworm, bullseye, buster
+ARG VARIANT="trixie"
+FROM buildpack-deps:${VARIANT}-curl
 
-# Instala o NASM e outras ferramentas
-RUN apt-get update && \
+# [Optional] Uncomment this section to install additional OS packages.
+ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+     && apt-get -y install --no-install-recommends apt-get update && \
     apt-get install -y nasm build-essential gdb && \
     rm -rf /var/lib/apt/lists/*
+
